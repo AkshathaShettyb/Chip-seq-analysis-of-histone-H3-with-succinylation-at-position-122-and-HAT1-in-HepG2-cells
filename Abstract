@@ -1,0 +1,8 @@
+ChIP-seq is a method that helps scientists to understand where a particular protein or modification is located on the DNA in cells.
+In this study,  ChIP-seq experiments are performed using HepG2 cells, a type of human liver cell. They used an antibody that can specifically recognize histone H3 with succinylation at position 122 and another one for HAT1.
+
+objective:
+
+Specific modification on a protein called histone H3, known as succinylation at position 122. The objective is to find out where on the DNA histone H3K122 succinylation is found in HepG2 cells 
+
+ Study how this modification is related to another protein called HAT1.
