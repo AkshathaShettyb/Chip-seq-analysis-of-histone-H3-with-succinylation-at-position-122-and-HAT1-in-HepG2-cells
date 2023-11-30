@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Check for the presence of trimmomatic-0.39.jar
+TRIMMOMATIC_JAR="trimmomatic-0.39.jar"
+if [ ! -e "$TRIMMOMATIC_JAR" ]; then
+    echo "Error: trimmomatic-0.39.jar not found in the current directory."
+    exit 1
+fi
+
+# Input FASTQ files (change these to your input file paths)
+INPUT_FORWARD="SRR9049746_1.fastq.gz"
+INPUT_REVERSE="SRR9049746_2.fastq.gz"
+
+# Output file names (customize as needed)
+OUTPUT_FORWARD_PAIRED="output_forward_paired.fq.gz"
+OUTPUT_FORWARD_UNPAIRED="output_forward_unpaired.fq.gz"
+OUTPUT_REVERSE_PAIRED="output_reverse_paired.fq.gz"
+OUTPUT_REVERSE_UNPAIRED="output_reverse_unpaired.fq.gz"
+
+# Adapter file (customize if needed)
+ADAPTER_FILE="adapters/TruSeq3-PE.fa"
+
+# Run Trimommatic
+java -jar "$TRIMMOMATIC_JAR" PE \
+    "$INPUT_FORWARD" "$INPUT_REVERSE" \
+    "$OUTPUT_FORWARD_PAIRED" "$OUTPUT_FORWARD_UNPAIRED" \
+    "$OUTPUT_REVERSE_PAIRED" "$OUTPUT_REVERSE_UNPAIRED" \
+    ILLUMINACLIP:"$ADAPTER_FILE":2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
+
+# Check for the success of the Trimommatic operation
+if [ $? -eq 0 ]; then
+    echo "Trimommatic completed successfully."
+else
+    echo "Trimommatic encountered an error."
+fi
