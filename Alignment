@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Set the paths and filenames
+BOWTIE2_INDEX="path_to_bowtie2_index"  # Replace with the path to your Bowtie2 index
+INPUT_FORWARD="forward_reads.fastq.gz"  # Replace with your forward reads
+INPUT_REVERSE="reverse_reads.fastq.gz"  # Replace with your reverse reads
+OUTPUT_SAM="output_alignment.sam"  # Replace with your desired SAM output file name
+
+# Run Bowtie2 alignment
+bowtie2 -x "$BOWTIE2_INDEX" -1 "$INPUT_FORWARD" -2 "$INPUT_REVERSE" -S "$OUTPUT_SAM"
+
+# Check for the success of the Bowtie2 alignment
+if [ $? -eq 0 ]; then
+    echo "Bowtie2 alignment completed successfully."
+else
+    echo "Bowtie2 encountered an error."
+fi
+Here's what this script does:
