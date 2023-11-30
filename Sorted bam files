@@ -1,0 +1,13 @@
+#!/bin/bash
+
+files="filename.txt"
+#initialize the counter
+i=0
+while read line;do
+echo "$line"
+samtools sort "$line.bam" -o "sorted_$line"
+#incremnting the counter
+i=$((i+1))
+
+
+done < $files
