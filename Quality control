@@ -1,0 +1,21 @@
+#!bin/bash
+
+#input fasta files
+input_dir="fq_files/trimmed"
+
+#output_dir
+output_dir="fq_files/trimmed/output_dir"
+
+#loop through all the FASTQ
+for file in "$input_dir"/*.fastq.gz;do
+    if [ -e "$file" ]; then
+        filename=$(basename "$file" .fastq.gz)
+#Run FASTQC on the  current file
+       fastqc -o "$output_dir" "$file"
+
+        echo "FASTQC completed for $filename"
+    else
+        echo "file not found: $file"
+    fi
+done
+echo "all Fastqc analyses are complete"
